@@ -1,0 +1,33 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.google.common.primitives.Primitives
+ */
+package me.moon.utils.value.parse;
+
+import com.google.common.primitives.Primitives;
+
+public final class NumberCaster {
+    public static <T extends Number, V extends Number> T cast(Class<T> numberClass, V value) {
+        Number casted;
+        if ((numberClass = Primitives.wrap(numberClass)) == Byte.class) {
+            casted = value.byteValue();
+        } else if (numberClass == Short.class) {
+            casted = value.shortValue();
+        } else if (numberClass == Integer.class) {
+            casted = value.intValue();
+        } else if (numberClass == Long.class) {
+            casted = value.longValue();
+        } else if (numberClass == Float.class) {
+            casted = Float.valueOf(value.floatValue());
+        } else {
+            if (numberClass != Double.class) {
+                throw new ClassCastException(String.format("%s cannot be casted to %s", value.getClass(), numberClass));
+            }
+            casted = value.doubleValue();
+        }
+        return (T)casted;
+    }
+}
+
