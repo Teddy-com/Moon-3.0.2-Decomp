@@ -27,7 +27,7 @@ extends Module {
 
     public Secret() {
         super("Secret", Module.Category.VISUALS, -1);
-        this.setHidden(true);
+        this.setHidden(false);
     }
 
     @Handler(value=Render2DEvent.class)
